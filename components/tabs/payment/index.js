@@ -1,12 +1,11 @@
+import Section from
+
 export default function Home() {
     return (
       <div>
         <h1>
-          payment
+          monthly payment
         </h1>
-        <div>
-          
-        </div>
       </div>
     )
   }

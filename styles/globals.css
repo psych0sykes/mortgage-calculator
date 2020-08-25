@@ -16,7 +16,14 @@ a {
 }
 
 .navTab {
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 10px;
   border-left: solid 2px black;
+  transition: background-color 300ms;
+}
+.navTab:hover {
+  background-color: #b1dede;
+  cursor: pointer;
+}
+input:focus {
+  outline:#b1dede solid 2px;
 }
