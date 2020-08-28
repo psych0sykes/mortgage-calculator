@@ -3,7 +3,7 @@ import Section from "../../Section";
 import Input from "../../Form/Input";
 
 export default function Payment() {
-  const [params,setParams] = useState({P: 250000,r: 0.03,n: 30});
+  const [params,setParams] = useState({P: 250000,r: 3,n: 30});
   const [mortgagePayment,setMortgagePayment] = useState();
 
   // M = P[r(1+r)^n/((1+r)^n)-1)]
@@ -37,7 +37,7 @@ export default function Payment() {
         <h2>
           monthly payment
         </h2>
-        <Section>
+        <Section direction="column">
               <form>
                 <Input label="mortgage amount" size="medium" type="number" cb={(event)=>handleParams("P",event.target.value)}/>
                 <Input label="interest rate" tail="%" size="small" type="number" cb={(event)=>handleParams("r",event.target.value)}/>
