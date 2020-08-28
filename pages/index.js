@@ -2,10 +2,9 @@ import Section from "../components/Section";
 import Input from "../components/Form/Input";
 import {useState} from "react";
 import useFormatNumber from "../hooks/useFormatNumber";
+import Payment from "../components/Tabs/Payment";
 
 export default function Home() {
-
-  const [mortgageAmount,setMortgageAmount] = useState(100000)
 
   return (
     <div>
@@ -19,11 +18,7 @@ export default function Home() {
               <div className="navTab">monthly income</div>
           </Section>
           <Section>
-              <form>
-                <Input label="mortgage amount" size="medium" type="number" cb={(event)=>setMortgageAmount(event.value)} value={mortgageAmount}/>
-                <Input label="interest rate" size="small" type="number"/>
-                <Input label="term length" size="small" type="text"/>
-              </form>
+            <Payment/>
           </Section>
       </Section>
     </div>
