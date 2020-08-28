@@ -3,10 +3,11 @@ import Section from "../../Section";
 import Input from "../../Form/Input";
 
 export default function Payment() {
-  const [params,setParams] = useState({P: 250000,r: 3,n: 30});
+  const defaultConfig = {P: 250000,r: 3,n: 30};
+  const [params,setParams] = useState(defaultConfig);
   const [mortgagePayment,setMortgagePayment] = useState();
   const paymentInterest = params.r / 1200 * params.P;
-  const paymentPrincipal = mortgagePayment - paymentInterest
+  const paymentPrincipal = mortgagePayment - paymentInterest;
 
   // M = P[r(1+r)^n/((1+r)^n)-1)]
 
@@ -40,23 +41,25 @@ export default function Payment() {
         </h2>
         <Section direction="column">
               <form>
-                <Input label="mortgage amount" size="medium" type="number" cb={(event)=>handleParams("P",event.target.value)}/>
-                <Input label="interest rate" tail="%" size="small" type="number" cb={(event)=>handleParams("r",event.target.value)}/>
-                <Input label="term length" tail="years" size="small" type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+                <Input label="mortgage amount" size="medium" placeholder={defaultConfig.P} type="number" cb={(event)=>handleParams("P",event.target.value)}/>
+                <Input label="interest rate" tail="%" size="small" placeholder={defaultConfig.r} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
+                <Input label="term length" tail="years" size="small" placeholder={defaultConfig.n} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
               </form>
               <table>
-                <tr>
-                  <td>monthly payment</td>
-                  <th>{mortgagePayment}</th>
-                </tr>
-                <tr>
-                  <td>principal</td>
-                  <td>{paymentPrincipal}</td>
-                </tr>
-                <tr>
-                  <td>interest</td>
-                  <td>{paymentInterest}</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>monthly payment</td>
+                    <th>{mortgagePayment}</th>
+                  </tr>
+                  <tr>
+                    <td>principal</td>
+                    <td>{paymentPrincipal}</td>
+                  </tr>
+                  <tr>
+                    <td>interest</td>
+                    <td>{paymentInterest}</td>
+                  </tr>
+                </tbody>
               </table>
           </Section>
       </div>

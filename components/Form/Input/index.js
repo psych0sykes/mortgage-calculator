@@ -24,7 +24,7 @@ export default function CenterInput(props) {
     return (
       <div style={style}>
           <div style={{marginRight: "10px"}}>{props.label}</div>
-          <input attr={props.label} type={props.type} style={inputStyle} onChange={props.cb} value={props.value}/>
+          <input attr={props.label} type={props.type} style={inputStyle} onChange={props.cb} value={props.value} placeholder={props.placeholder}/>
           <div style={{marginLeft: "5px"}}>{props.tail}</div>
       </div>
     )
