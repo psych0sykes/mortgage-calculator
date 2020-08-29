@@ -33,3 +33,7 @@ table {
 td {
   padding: 5px;
 }
+.altText {
+  color: #2cb9b9;
+  font-size: 25px;
+}

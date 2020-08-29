@@ -13,8 +13,7 @@ export default function CenterInput(props) {
 
     const style={
         display: "flex",
-        justifyContent: "center",
-        paddingTop: "15px",
+        // justifyContent: "center",
     };
 
     const inputStyle = {
@@ -22,10 +21,12 @@ export default function CenterInput(props) {
     }
 
     return (
-      <div style={style}>
-          <div style={{marginRight: "10px"}}>{props.label}</div>
-          <input attr={props.label} type={props.type} style={inputStyle} onChange={props.cb} value={props.value} placeholder={props.placeholder}/>
-          <div style={{marginLeft: "5px"}}>{props.tail}</div>
-      </div>
+      <tr>
+          <td style={{marginRight: "10px"}}>{props.label}</td>
+          <td style={style}>
+            <input attr={props.label} type={props.type} style={inputStyle} onChange={props.cb} value={props.value} placeholder={props.placeholder}/>
+            <div style={{marginLeft: "5px"}}>{props.tail}</div>
+          </td>
+      </tr>
     )
   };

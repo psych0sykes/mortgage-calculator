@@ -45,17 +45,22 @@ export default function Payment() {
 
     return (
       <div>
-        <Section>
+        <Section direction="column">
+          <div style={{marginTop: "60px"}}/>
           <h2>
             monthly payment
           </h2>
         </Section>
         <Section direction="column">
-              <form>
-                <Input label="home price" size="medium" placeholder={defaultConfig.h} type="number" cb={(event)=>handleParams("h",event.target.value)}/>
-                <Input label="down payment" size="medium" placeholder={defaultConfig.d} type="number" cb={(event)=>handleParams("d",event.target.value)}/>
-                <Input label="interest rate" tail="%" size="small" placeholder={defaultConfig.r} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
-                <Input label="term length" tail="years" size="small" placeholder={defaultConfig.n} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+              <form style={{display: "flex",justifyContent: "center"}}>
+                <table>
+                  <tbody>
+                    <Input label="home price" size="medium" placeholder={defaultConfig.h} type="number" cb={(event)=>handleParams("h",event.target.value)}/>
+                    <Input label="down payment" size="medium" placeholder={defaultConfig.d} type="number" cb={(event)=>handleParams("d",event.target.value)}/>
+                    <Input label="interest rate" tail="%" size="small" placeholder={defaultConfig.r} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
+                    <Input label="term length" tail="years" size="small" placeholder={defaultConfig.n} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+                  </tbody>
+                </table>
               </form>
               <div style={{marginTop: "60px"}}/>
               <table>
@@ -65,8 +70,8 @@ export default function Payment() {
                     <td>{useFormatNumber(mortgageAmount)}</td>
                   </tr>
                   <tr style={{fontSize: "20px"}}>
-                    <td>monthly payment</td>
-                    <td>${useFormatNumber(mortgagePayment)}</td>
+                    <td className="altText">monthly payment</td>
+                    <td className="altText">${useFormatNumber(mortgagePayment)}</td>
                   </tr>
                   <tr>
                     <td>principal</td>
