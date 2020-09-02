@@ -10,6 +10,9 @@ export default function Affordable() {
   const paymentInterest = Math.round((params.r / 1200 * mortgageAmount)*100)/100;
   const paymentPrincipal = paymentInterest;
   const homePrice = mortgageAmount + params.d;
+  // add property taxes
+  // add mortgage insurance
+  // add hazard insurance
 
   console.log(paymentInterest);
   console.log(paymentPrincipal);
