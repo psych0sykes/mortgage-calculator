@@ -59,6 +59,8 @@ export default function Payment() {
                     <Input label="down payment" size="medium" placeholder={useFormatNumber(params.d)} type="number" cb={(event)=>handleParams("d",event.target.value)}/>
                     <Input label="interest rate" tail="%" size="small" placeholder={useFormatNumber(params.r)} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
                     <Input label="term length" tail="years" size="small" placeholder={useFormatNumber(params.n)} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+                    <Input label="home insurance" tail="annually" size="medium" placeholder={useFormatNumber(params.i)} type="number" cb={(event)=>handleParams("i",event.target.value)}/>
+                    <Input label="property tax rate" tail="%" size="small" placeholder={useFormatNumber(params.t)} type="number" cb={(event)=>handleParams("t",event.target.value)}/>
                     <tr>
                       <td>LTV</td>
                       <td>{ltv}%</td>

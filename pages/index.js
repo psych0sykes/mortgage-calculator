@@ -31,7 +31,7 @@ export default function Home() {
           <Section>
               <div className="navTab" onClick={()=>handleNavTab("payment")}>monthly payment</div>
               <div className="navTab" onClick={()=>handleNavTab("affordable")}>how much home?</div>
-              <div className="navTab">monthly income</div>
+              {/* <div className="navTab">monthly income</div> */}
           </Section>
           <Section>
             <Tabs tab={activeTab}/>

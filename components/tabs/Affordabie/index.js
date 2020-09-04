@@ -4,35 +4,28 @@ import Section from "../../Section";
 import Input from "../../Form/Input";
 
 export default function Affordable() {
-  const defaultConfig = {I: 60000,d: 70000,r: 3,n: 30,p: 1500};
+  const defaultConfig = {I: 60000,D: 70000,r: 3,n: 30,f: 36,b: 43,d: 300,t: 1,m: 1.05,h: 0.6};
   const [params,setParams] = useState(defaultConfig);
   const [mortgageAmount,setMortgageAmount] = useState(0);
+  const [homePrice,setHomePrice] = useState(0);
+  const frontEndRatio = Math.round(params.f * params.I / 12) / 100;
+  const backEndRatio = Math.round(params.b * (params.I / 12 - params.d))
+  const mortgagePayment = Math.min(frontEndRatio,backEndRatio);
   const paymentInterest = Math.round((params.r / 1200 * mortgageAmount)*100)/100;
-  const paymentPrincipal = paymentInterest;
-  const homePrice = mortgageAmount + params.d;
-  // add property taxes
-  // add mortgage insurance
-  // add hazard insurance
-
-  console.log(paymentInterest);
-  console.log(paymentPrincipal);
-
-  // M = P[r(1+r)^n/((1+r)^n)-1)]
-
-  // 
+  const paymentPrincipal = mortgagePayment - paymentInterest;
 
   const calculateMortgage = (payment,rate,term) => {
     const r = rate / 100 / 12;
     const n = term * 12;
-    const m = payment;
+    const M = payment;
+    const t = params.t / 1200;
+    const h = params.h / 1200;
+    const m = params.m / 1200;
 
-    const maxMortgage = Math.round(m/((r * ((1 + r) ** n))/(((1 + r) ** n) - 1))*100)/100;
-    console.log(m)
-    console.log(((r * ((1 + r) ** n))/(((1 + r) ** n) - 1)))
-    // console.log(p + "[" + r + "(1 + " + r + ")^" + n + "/((1+" + r + ")^" + n + ")-1)]");
+    const maxMortgage = (Math.round(M/((r * ((1 + r) ** n))/(((1 + r) ** n) - 1) + t + h + m)*100)/100);
+
     setMortgageAmount(maxMortgage);
-    // setPaymentInterest(params.r / 1200 * mortgageAmount);
-    // setPaymentPrincipal(mortgagePayment - paymentInterest);
+    setHomePrice(maxMortgage + params.D)
   }
 
   const handleParams = (title,value) => {
@@ -44,7 +37,7 @@ export default function Affordable() {
   }
 
   useEffect(() => {
-    calculateMortgage(1500,params.r,params.n);
+    calculateMortgage(mortgagePayment,params.r,params.n);
   });
 
 
@@ -60,10 +53,14 @@ export default function Affordable() {
               <form style={{display: "flex",justifyContent: "center"}}>
                 <table>
                   <tbody>
-                    <Input label="annual income" size="medium" placeholder={defaultConfig.I} type="number" cb={(event)=>handleParams("I",event.target.value)}/>
-                    <Input label="down payment" size="medium" placeholder={defaultConfig.d} type="number" cb={(event)=>handleParams("d",event.target.value)}/>
-                    <Input label="interest rate" tail="%" size="small" placeholder={defaultConfig.r} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
-                    <Input label="term length" tail="years" size="small" placeholder={defaultConfig.n} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+                    <Input label="annual income" size="medium" placeholder={useFormatNumber(params.I)} type="number" cb={(event)=>handleParams("I",event.target.value)}/>
+                    <Input label="monthly debt" size="medium" placeholder={useFormatNumber(params.d)} type="number" cb={(event)=>handleParams("d",parseInt(event.target.value))}/>
+                    <Input label="down payment" size="medium" placeholder={useFormatNumber(params.D)} type="number" cb={(event)=>handleParams("D",parseInt(event.target.value))}/>
+                    <Input label="interest rate" tail="%" size="small" placeholder={useFormatNumber(params.r)} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
+                    <Input label="term length" tail="years" size="small" placeholder={useFormatNumber(params.n)} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+                    <Input label="annual property tax" tail="%" size="small" placeholder={useFormatNumber(params.t)} type="number" cb={(event)=>handleParams("t",event.target.value)}/>
+                    <Input label="annual home insurance" tail="%" size="small" placeholder={useFormatNumber(params.h)} type="number" cb={(event)=>handleParams("h",event.target.value)}/>
+                    <Input label="mortgage insurance" tail="%" size="small" placeholder={useFormatNumber(params.m)} type="number" cb={(event)=>handleParams("m",event.target.value)}/>
                   </tbody>
                 </table>
               </form>
@@ -79,12 +76,28 @@ export default function Affordable() {
                     <td className="altText">${useFormatNumber(homePrice)}</td>
                   </tr>
                   <tr>
+                    <td>monthly payment</td>
+                    <td>{useFormatNumber(mortgagePayment)}</td>
+                  </tr>
+                  <tr>
                     <td>principal</td>
                     <td>{useFormatNumber(paymentPrincipal)}</td>
                   </tr>
                   <tr>
                     <td>interest</td>
                     <td>{useFormatNumber(paymentInterest)}</td>
+                  </tr>
+                  <tr>
+                    <td>propert tax</td>
+                    <td>{useFormatNumber(Math.round(params.t * mortgageAmount / 12) / 100)}</td>
+                  </tr>
+                  <tr>
+                    <td>home insurance</td>
+                    <td>{useFormatNumber(Math.round(params.h * mortgageAmount / 12) / 100)}</td>
+                  </tr>
+                  <tr>
+                    <td>mortgage insurance</td>
+                    <td>{useFormatNumber(Math.round(params.m * mortgageAmount / 12) / 100)}</td>
                   </tr>
                 </tbody>
               </table>
