@@ -9,7 +9,7 @@ export default function Affordable() {
   const [mortgageAmount,setMortgageAmount] = useState(0);
   const [homePrice,setHomePrice] = useState(0);
   const frontEndRatio = Math.round(params.f * params.I / 12) / 100;
-  const backEndRatio = Math.round(params.b * (params.I / 12 - params.d))
+  const backEndRatio = Math.round(params.b * ((params.I / 12) - params.d) / 100)
   const mortgagePayment = Math.min(frontEndRatio,backEndRatio);
   const paymentInterest = Math.round((params.r / 1200 * mortgageAmount)*100)/100;
   const paymentPrincipal = mortgagePayment - paymentInterest;
