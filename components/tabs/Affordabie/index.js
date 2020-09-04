@@ -46,7 +46,7 @@ export default function Affordable() {
         <Section direction="column">
           <div style={{marginTop: "60px"}}/>
           <h2>
-            how much house can i afford?
+            how much home can i afford?
           </h2>
         </Section>
         <Section direction="column">

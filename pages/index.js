@@ -4,6 +4,7 @@ import {useState} from "react";
 import useFormatNumber from "../hooks/useFormatNumber";
 import Payment from "../components/Tabs/Payment";
 import Affordable from "../components/Tabs/Affordabie";
+import NavTabs from "../components/NavTabs";
 
 export default function Home() {
 
@@ -28,11 +29,7 @@ export default function Home() {
           <h1>
             mortgage calculator
           </h1>
-          <Section>
-              <div className="navTab" onClick={()=>handleNavTab("payment")}>monthly payment</div>
-              <div className="navTab" onClick={()=>handleNavTab("affordable")}>how much home?</div>
-              {/* <div className="navTab">monthly income</div> */}
-          </Section>
+          <NavTabs/>
           <Section>
             <Tabs tab={activeTab}/>
           </Section>
