@@ -1,6 +1,5 @@
 import Section from "../components/Section";
 import NavTabs from "../components/NavTabs";
-// import Affordable from "../components/Tabs/Affordable";
 
 export default function HowMuchHome() {
 
