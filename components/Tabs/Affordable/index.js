@@ -42,35 +42,67 @@ export default function Affordable() {
     calculateMortgage(mortgagePayment,params.r,params.n);
   });
 
-  // const InputTable = () => {
-  //   return (
-  //       <form style={{display: "flex",justifyContent: "left"}}>
-  //         <table>
-  //           <tbody>
-  //             <Input label="annual income" size="medium" placeholder={useFormatNumber(params.I)} type="number" cb={(event)=>handleParams("I",event.target.value)}/>
-  //             <Input label="monthly debt" size="medium" placeholder={useFormatNumber(params.d)} type="number" cb={(event)=>handleParams("d",parseInt(event.target.value))}/>
-  //             <Input label="down payment" size="medium" placeholder={useFormatNumber(params.D)} type="number" cb={(event)=>handleParams("D",parseInt(event.target.value))}/>
-  //             <Input label="interest rate" tail="%" size="small" placeholder={useFormatNumber(params.r)} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
-  //             <Input label="term length" tail="years" size="small" placeholder={useFormatNumber(params.n)} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
-  //             <tr>
-  //               <td>
-  //                 more
-  //               </td>
-  //             </tr>
-  //             <Input label="annual property tax" tail="%" size="small" placeholder={useFormatNumber(params.t)} type="number" cb={(event)=>handleParams("t",event.target.value)}/>
-  //             <Input label="annual home insurance" tail="%" size="small" placeholder={useFormatNumber(params.h)} type="number" cb={(event)=>handleParams("h",event.target.value)}/>
-  //             <Input label="mortgage insurance" tail="%" size="small" placeholder={useFormatNumber(params.m)} type="number" cb={(event)=>handleParams("m",event.target.value)}/>
-  //             <tr>
-  //               <td>
-  //                 less
-  //               </td>
-  //             </tr>
-  //           </tbody>
-  //         </table>
-  //       </form>
-  //     )
-  // }
+  const standardInputs = [
+    {
+      label: "annual income",
+      size: "medium",
+      type: "number",
+      paramId: "I"
+    },
+    {
+      label: "monthly debt",
+      size: "medium",
+      type: "number",
+      paramId: "d"
+    },
+    {
+      label: "down payment",
+      size: "medium",
+      type: "number",
+      paramId: "D"
+    },
+    {
+      label: "interest rate",
+      tail: "%",
+      size: "small",
+      type: "number",
+      paramId: "r"
+    },
+    {
+      label: "term length",
+      tail: "years",
+      size: "small",
+      type: "number",
+      paramId: "n"
+    }
+  ];
+  const extraInputs = [
+    {
+      label: "annual property tax",
+      tail: "%",
+      size: "small",
+      type: "number",
+      paramId: "t"
+    },
+    {
+      label: "annaul home insurance",
+      tail: "%",
+      size: "small",
+      type: "number",
+      paramId: "h",
+    },
+    {
+      label: "mortgage insurance",
+      tail: "%",
+      size: "small",
+      type: "number",
+      paramId: "m"
+    }
+  ]
 
+  // <Input label="annual property tax" tail="%" size="small" placeholder={useFormatNumber(params.t)} type="number" cb={(event)=>handleParams("t",event.target.value)}/>
+  // <Input label="annual home insurance" tail="%" size="small" placeholder={useFormatNumber(params.h)} type="number" cb={(event)=>handleParams("h",event.target.value)}/>
+  // <Input label="mortgage insurance" tail="%" size="small" placeholder={useFormatNumber(params.m)} type="number" cb={(event)=>handleParams("m",event.target.value)}/>
 
     return (
       <div>
@@ -81,7 +113,7 @@ export default function Affordable() {
           </h2>
         </Section>
         <Section direction="column">
-              <InputTable params={params} handleParams={handleParams}/>
+              <InputTable params={params} standardInputs={standardInputs} handleParams={handleParams}/>
               <div style={{marginTop: "60px"}}/>
               <table>
                 <tbody>

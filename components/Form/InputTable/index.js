@@ -15,7 +15,7 @@ export default function InputTable(props) {
             size: "medium",
             placeholder: params.I,
             type: "number",
-            paramId: "I",
+            paramId: "I"
         }
     ]
 
@@ -23,7 +23,7 @@ export default function InputTable(props) {
         return(
             array.map((item) =>{
                 return(
-                    <Input key={item.paramId} label={item.label} size={item.size} placeholder={useFormatNumber(item.placeholder)} type={item.type} cb={(event)=>handleParams(item.paramId,event.target.value)}/>
+                    <Input key={item.paramId} label={item.label} tail={item.tail} size={item.size} placeholder={useFormatNumber(params[item.paramId])} type={item.type} cb={(event)=>handleParams(item.paramId,event.target.value)}/>
                 )
             })
         )};
@@ -33,12 +33,7 @@ export default function InputTable(props) {
         <form style={{display: "flex",justifyContent: "left"}}>
           <table>
             <tbody>
-                {renderInputs(testArray)}
-              {/* <Input label="annual income" size="medium" placeholder={useFormatNumber(params.I)} type="number" cb={(event)=>handleParams("I",event.target.value)}/> */}
-              <Input label="monthly debt" size="medium" placeholder={useFormatNumber(params.d)} type="number" cb={(event)=>handleParams("d",parseInt(event.target.value))}/>
-              <Input label="down payment" size="medium" placeholder={useFormatNumber(params.D)} type="number" cb={(event)=>handleParams("D",parseInt(event.target.value))}/>
-              <Input label="interest rate" tail="%" size="small" placeholder={useFormatNumber(params.r)} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
-              <Input label="term length" tail="years" size="small" placeholder={useFormatNumber(params.n)} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+                {renderInputs(standardInputsArray)}
               <tr>
                 <td>
                   more
