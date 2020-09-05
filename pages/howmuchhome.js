@@ -14,6 +14,7 @@ export default function HowMuchHome() {
           <Section>
             <Affordable/>
           </Section>
+          <footer></footer>
       </Section>
     </div>
   )

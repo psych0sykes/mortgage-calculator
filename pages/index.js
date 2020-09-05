@@ -14,6 +14,7 @@ export default function Home() {
           <Section>
             <Payment/>
           </Section>
+          <footer></footer>
       </Section>
     </div>
   )

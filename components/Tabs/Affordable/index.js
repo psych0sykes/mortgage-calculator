@@ -1,12 +1,14 @@
 import {useState, useEffect} from "react";
 import useFormatNumber from "../../../hooks/useFormatNumber";
 import Section from "../../Section";
+import InputTable from "../../Form/InputTable";
 import Input from "../../Form/Input";
 
 export default function Affordable() {
   const defaultConfig = {I: 60000,D: 70000,r: 3,n: 30,f: 36,b: 43,d: 300,t: 1,m: 1.05,h: 0.6};
   const [params,setParams] = useState(defaultConfig);
   const [mortgageAmount,setMortgageAmount] = useState(0);
+  const [inputMoreDetail,setInputMoreDetail] = useState(true);
   const [homePrice,setHomePrice] = useState(0);
   const frontEndRatio = Math.round(params.f * params.I / 12) / 100;
   const backEndRatio = Math.round(params.b * ((params.I / 12) - params.d) / 100)
@@ -40,6 +42,35 @@ export default function Affordable() {
     calculateMortgage(mortgagePayment,params.r,params.n);
   });
 
+  // const InputTable = () => {
+  //   return (
+  //       <form style={{display: "flex",justifyContent: "left"}}>
+  //         <table>
+  //           <tbody>
+  //             <Input label="annual income" size="medium" placeholder={useFormatNumber(params.I)} type="number" cb={(event)=>handleParams("I",event.target.value)}/>
+  //             <Input label="monthly debt" size="medium" placeholder={useFormatNumber(params.d)} type="number" cb={(event)=>handleParams("d",parseInt(event.target.value))}/>
+  //             <Input label="down payment" size="medium" placeholder={useFormatNumber(params.D)} type="number" cb={(event)=>handleParams("D",parseInt(event.target.value))}/>
+  //             <Input label="interest rate" tail="%" size="small" placeholder={useFormatNumber(params.r)} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
+  //             <Input label="term length" tail="years" size="small" placeholder={useFormatNumber(params.n)} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
+  //             <tr>
+  //               <td>
+  //                 more
+  //               </td>
+  //             </tr>
+  //             <Input label="annual property tax" tail="%" size="small" placeholder={useFormatNumber(params.t)} type="number" cb={(event)=>handleParams("t",event.target.value)}/>
+  //             <Input label="annual home insurance" tail="%" size="small" placeholder={useFormatNumber(params.h)} type="number" cb={(event)=>handleParams("h",event.target.value)}/>
+  //             <Input label="mortgage insurance" tail="%" size="small" placeholder={useFormatNumber(params.m)} type="number" cb={(event)=>handleParams("m",event.target.value)}/>
+  //             <tr>
+  //               <td>
+  //                 less
+  //               </td>
+  //             </tr>
+  //           </tbody>
+  //         </table>
+  //       </form>
+  //     )
+  // }
+
 
     return (
       <div>
@@ -50,30 +81,17 @@ export default function Affordable() {
           </h2>
         </Section>
         <Section direction="column">
-              <form style={{display: "flex",justifyContent: "center"}}>
-                <table>
-                  <tbody>
-                    <Input label="annual income" size="medium" placeholder={useFormatNumber(params.I)} type="number" cb={(event)=>handleParams("I",event.target.value)}/>
-                    <Input label="monthly debt" size="medium" placeholder={useFormatNumber(params.d)} type="number" cb={(event)=>handleParams("d",parseInt(event.target.value))}/>
-                    <Input label="down payment" size="medium" placeholder={useFormatNumber(params.D)} type="number" cb={(event)=>handleParams("D",parseInt(event.target.value))}/>
-                    <Input label="interest rate" tail="%" size="small" placeholder={useFormatNumber(params.r)} type="number" cb={(event)=>handleParams("r",event.target.value)}/>
-                    <Input label="term length" tail="years" size="small" placeholder={useFormatNumber(params.n)} type="number" cb={(event)=>handleParams("n",event.target.value)}/>
-                    <Input label="annual property tax" tail="%" size="small" placeholder={useFormatNumber(params.t)} type="number" cb={(event)=>handleParams("t",event.target.value)}/>
-                    <Input label="annual home insurance" tail="%" size="small" placeholder={useFormatNumber(params.h)} type="number" cb={(event)=>handleParams("h",event.target.value)}/>
-                    <Input label="mortgage insurance" tail="%" size="small" placeholder={useFormatNumber(params.m)} type="number" cb={(event)=>handleParams("m",event.target.value)}/>
-                  </tbody>
-                </table>
-              </form>
+              <InputTable params={params} handleParams={handleParams}/>
               <div style={{marginTop: "60px"}}/>
               <table>
                 <tbody>
-                  <tr>
-                    <td>mortgage amount</td>
-                    <td>{useFormatNumber(mortgageAmount)}</td>
-                  </tr>
                   <tr style={{fontSize: "20px"}}>
                     <td className="altText">home price</td>
                     <td className="altText">${useFormatNumber(homePrice)}</td>
+                  </tr>
+                  <tr>
+                    <td>mortgage amount</td>
+                    <td>{useFormatNumber(mortgageAmount)}</td>
                   </tr>
                   <tr>
                     <td>monthly payment</td>

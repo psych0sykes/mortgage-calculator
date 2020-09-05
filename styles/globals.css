@@ -27,13 +27,13 @@ a {
 input:focus {
   outline:#b1dede solid 2px;
 }
-table {
-  padding: 10px;
-}
 td {
   padding: 5px;
 }
 .altText {
   color: #2cb9b9;
   font-size: 25px;
+}
+footer {
+  margin-bottom: 150px;
 }
