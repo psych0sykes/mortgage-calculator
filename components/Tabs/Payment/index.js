@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import useFormatNumber from "../../../hooks/useFormatNumber";
 import Section from "../../Section";
 import Input from "../../Form/Input";
+import ChartBar from "../../ChartBar";
 
 export default function Payment() {
   const defaultConfig = {h: 350000,d: 70000,r: 3,n: 30,i: 1500,t: 1,mi: 1.05};
@@ -71,6 +72,11 @@ export default function Payment() {
               <div style={{marginTop: "60px"}}/>
               <table>
                 <tbody>
+                  <tr>
+                    <td>
+                      <ChartBar/>
+                    </td>
+                  </tr>
                   <tr>
                     <td>mortgage amount</td>
                     <td>{useFormatNumber(mortgageAmount)}</td>
